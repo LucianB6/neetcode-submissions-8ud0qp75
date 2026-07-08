@@ -1,0 +1,50 @@
+class Solution {
+    public int findMin(int[] nums) {
+
+        int left = 0;
+        int right = nums.length - 1;
+
+        if(nums[left] < nums[right]){
+            return nums[left];
+        }
+
+        if(nums.length == 2){
+            if (nums[left] > nums[right]){
+                return nums[right];
+            }
+            else {
+                return nums[left];
+            }
+        }
+
+        else if (nums.length == 1){
+            return nums[left];
+        }
+
+        while (left < right){
+            int mid = left + ((right - left) / 2);
+
+            if (mid == left){
+                mid = right;
+            }
+
+            if ( nums[left] < nums[mid]){
+                left = mid;
+            }
+
+            if (nums[left] > nums[mid]){
+                while (nums[left] > nums[mid]){
+                    mid = mid - 1;
+                }
+                return nums[mid + 1];
+            }
+        }
+
+        if (nums[left] > nums[right]){
+            return nums[right];
+        }
+
+        return nums[left];
+        
+    }
+}
